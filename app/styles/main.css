@@ -1,0 +1,44 @@
+.section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.list-container {
+  border: 2px solid #A1998E;
+  border-radius: 5px;
+  padding: 20px 10px 10px 10px;
+  margin: 10px 0;
+  
+  color: #A1998E;
+  background-color: #ebe6e0;
+}
+
+.list {
+  list-style: none outside none;
+  margin: 10px 0;
+  padding: 10px 0;
+  /*min-height: 300px;*/
+}
+
+.item {
+  padding: 10px 10px;
+  margin: 5px 0;
+  border: 1px solid #A1998E;
+  border-radius: 5px;
+  background-color: #FCFCFC;
+
+  font-size: 1.1em;
+  font-weight: medium;
+  text-align: center;
+  cursor: move;
+  color: #8A5917;
+}
+
+.counter {
+  color: #8A5917;
+}
+
+.main-counter {
+ margin-top: 20px;
+ text-align: center;
+}
