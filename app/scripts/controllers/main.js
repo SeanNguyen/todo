@@ -38,6 +38,7 @@ function MainCtrl($scope, store) {
 
   //public event
   $scope.addTask = addTask;
+  $scope.removeTask = removeTask;
 
   // Activate
   init();
@@ -64,6 +65,11 @@ function MainCtrl($scope, store) {
     $scope.todoList.items.push($scope.input.task);
     store.set($scope.todoList.key, $scope.todoList.items);
     $scope.input.task = null;
+  }
+
+  function removeTask(list, index) {
+    list.items.splice(index, 1);
+    store.set(list.key, list.items);
   }
 }
 })();

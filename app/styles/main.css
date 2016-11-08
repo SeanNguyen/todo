@@ -15,16 +15,15 @@
 
 .list {
   list-style: none outside none;
-  margin: 10px 0;
-  padding: 10px 0;
-  /*min-height: 300px;*/
+  margin: 0;
+  padding: 20px 0;
 }
 
 .item {
-  padding: 10px 10px;
   margin: 5px 0;
   border: 1px solid #A1998E;
   border-radius: 5px;
+  padding-left: 20px;
   background-color: #FCFCFC;
 
   font-size: 1.1em;
@@ -32,6 +31,11 @@
   text-align: center;
   cursor: move;
   color: #8A5917;
+}
+
+.item .delete-button {
+  /*margin: 0;*/
+  min-width: 50px;
 }
 
 .counter {

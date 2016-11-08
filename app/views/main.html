@@ -20,7 +20,14 @@
                 <label class="md-headline counter">{{todoList.items.length}}</label>
             </div>
             <ul ui-sortable="sortableOptions" ng-model="todoList.items" class="list">
-                <li ng-repeat="item in todoList.items track by $index" class="item">{{item}}</li>
+                <li ng-repeat="item in todoList.items track by $index" class="item">
+                    <div layout="row" layout-align="space-between center">
+                        <div>{{item}}</div>
+                        <md-button class="md-icon-button" aria-label="delete" ng-click="removeTask(todoList, $index)">
+                            <md-icon md-font-icon="fa fa-times fa-lg"></md-icon>
+                        </md-button>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -31,7 +38,14 @@
                 <label class="md-headline counter">{{inProgressList.items.length}}</label>
             </div>
             <ul ui-sortable="sortableOptions" ng-model="inProgressList.items" class="list">
-                <li ng-repeat="item in inProgressList.items track by $index" class="item">{{item}}</li>
+                <li ng-repeat="item in inProgressList.items track by $index" class="item">
+                    <div layout="row" layout-align="space-between center">
+                        <div>{{item}}</div>
+                        <md-button class="md-icon-button" aria-label="delete" ng-click="removeTask(inProgressList, $index)">
+                            <md-icon md-font-icon="fa fa-times fa-lg"></md-icon>
+                        </md-button>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -42,7 +56,14 @@
                 <label class="md-headline counter">{{doneList.items.length}}</label>
             </div>
             <ul ui-sortable="sortableOptions" ng-model="doneList.items" class="list">
-                <li ng-repeat="item in doneList.items track by $index" class="item">{{item}}</li>
+                <li ng-repeat="item in doneList.items track by $index" class="item">
+                    <div layout="row" layout-align="space-between center">
+                        <div>{{item}}</div>
+                        <md-button class="md-icon-button" aria-label="delete" ng-click="removeTask(doneList, $index)">
+                            <md-icon md-font-icon="fa fa-times fa-lg"></md-icon>
+                        </md-button>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
