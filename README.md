@@ -1,12 +1,16 @@
-# zen-todo
+### todo list 
+
+# Getting Started:
+### Requirements: 
+nodejs, npm have been installded
+
+### Install dependencies:
+- global dependencies: `npm install -g grunt-cli bower`
+- project dependencies: `cd <project-dir> && npm install && bower install`
+
+### Start local server:
+- `grunt serve`
+- browse to `localhost:9000` to view the project.
+
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
-
-## Build & development
-
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
