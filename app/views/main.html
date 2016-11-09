@@ -8,58 +8,22 @@
         </form>
     </div>
     <div class="col-xs-12 col-sm-3 main-counter">
-        <label class="md-headline counter">Total {{todoList.items.length + inProgressList.items.length + doneList.items.length}} Projects</label>
+        <label class="md-headline counter">Total {{getTotalTasks()}} Projects</label>
     </div>
 </dir>
 
 <div class="row drag-area">
-    <div class="col-sm-4">
+    <div class="col-sm-4" ng-repeat="list in lists">
         <div class="list-container">
             <div layout="row" layout-align="space-between center">
-                <label class="md-headline">{{todoList.name}}</label>
-                <label class="md-headline counter">{{todoList.items.length}}</label>
+                <label class="md-headline">{{list.name}}</label>
+                <label class="md-headline counter">{{list.items.length}}</label>
             </div>
-            <ul ui-sortable="sortableOptions" ng-model="todoList.items" class="list">
-                <li ng-repeat="item in todoList.items track by $index" class="item">
+            <ul ui-sortable="sortableOptions" ng-model="list.items" class="list">
+                <li ng-repeat="item in list.items track by $index" class="item">
                     <div layout="row" layout-align="space-between center">
-                        <div>{{item}}</div>
-                        <md-button class="md-icon-button" aria-label="delete" ng-click="removeTask(todoList, $index)">
-                            <md-icon md-font-icon="fa fa-times fa-lg"></md-icon>
-                        </md-button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="list-container">
-            <div layout="row" layout-align="space-between center">
-                <label class="md-headline">{{inProgressList.name}}</label>
-                <label class="md-headline counter">{{inProgressList.items.length}}</label>
-            </div>
-            <ul ui-sortable="sortableOptions" ng-model="inProgressList.items" class="list">
-                <li ng-repeat="item in inProgressList.items track by $index" class="item">
-                    <div layout="row" layout-align="space-between center">
-                        <div>{{item}}</div>
-                        <md-button class="md-icon-button" aria-label="delete" ng-click="removeTask(inProgressList, $index)">
-                            <md-icon md-font-icon="fa fa-times fa-lg"></md-icon>
-                        </md-button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="list-container">
-            <div layout="row" layout-align="space-between center">
-                <label class="md-headline">{{doneList.name}}</label>
-                <label class="md-headline counter">{{doneList.items.length}}</label>
-            </div>
-            <ul ui-sortable="sortableOptions" ng-model="doneList.items" class="list">
-                <li ng-repeat="item in doneList.items track by $index" class="item">
-                    <div layout="row" layout-align="space-between center">
-                        <div>{{item}}</div>
-                        <md-button class="md-icon-button" aria-label="delete" ng-click="removeTask(doneList, $index)">
+                        <div flex>{{item}}</div>
+                        <md-button class="md-icon-button delete-button" aria-label="delete" ng-click="removeTask(list, $index)">
                             <md-icon md-font-icon="fa fa-times fa-lg"></md-icon>
                         </md-button>
                     </div>

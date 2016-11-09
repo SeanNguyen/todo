@@ -11,26 +11,15 @@
 angular.module('zenTodoApp').controller('MainCtrl', ['$scope', 'store', MainCtrl]);
 
 function MainCtrl($scope, store) {
-  // public attribute
+  // const
+  const KEY_STORAGE_LIST = "zen-lists";
+
+  // public attributes
   $scope.sortableOptions = {
     connectWith: '.drag-area .list',
     update: onListChange
   };
-  $scope.todoList = {
-    key: 'zen-todoItems',
-    name: 'To Do',
-    items: []
-  };
-  $scope.inProgressList = {
-    key: 'zen-inProgressItems',
-    name: 'In Progress',
-    items: []
-  };
-  $scope.doneList = {
-    key: 'zen-doneItems',
-    name: 'Done',
-    items: []
-  };
+  $scope.lists = [];
 
   $scope.input = {
     task: null
@@ -39,22 +28,24 @@ function MainCtrl($scope, store) {
   //public event
   $scope.addTask = addTask;
   $scope.removeTask = removeTask;
+  $scope.getTotalTasks = getTotalTasks;
 
-  // Activate
+  // activate
   init();
 
   // private methods
   function init() {
-    $scope.todoList.items = store.get($scope.todoList.key) || [];
-    $scope.inProgressList.items = store.get($scope.inProgressList.key) || [];
-    $scope.doneList.items = store.get($scope.doneList.key) || [];
+    var defaultLists = [
+      { name: 'To Do', items: [] },
+      { name: 'In Progress', items: [] },
+      { name: 'Done', items: [] }
+    ];
+    $scope.lists = store.get(KEY_STORAGE_LIST) || defaultLists;
   }
 
   function onListChange(event, ui) {
     setTimeout(function() {
-      store.set($scope.todoList.key, $scope.todoList.items);
-      store.set($scope.inProgressList.key, $scope.inProgressList.items);
-      store.set($scope.doneList.key, $scope.doneList.items);
+      store.set(KEY_STORAGE_LIST, $scope.lists);
     }, 0);
   }
 
@@ -62,14 +53,22 @@ function MainCtrl($scope, store) {
     if (!$scope.input.task) {
       return;
     }
-    $scope.todoList.items.push($scope.input.task);
-    store.set($scope.todoList.key, $scope.todoList.items);
+    $scope.lists[0].items.push($scope.input.task);
+    store.set(KEY_STORAGE_LIST, $scope.lists);
     $scope.input.task = null;
   }
 
   function removeTask(list, index) {
     list.items.splice(index, 1);
-    store.set(list.key, list.items);
+    store.set(KEY_STORAGE_LIST, $scope.lists);
+  }
+
+  function getTotalTasks() {
+    var count = 0;
+    $scope.lists.forEach((list) => {
+      count += list.items.length;
+    });
+    return count;
   }
 }
 })();
