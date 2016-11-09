@@ -40,12 +40,12 @@ function MainCtrl($scope, store) {
       { name: 'In Progress', items: [] },
       { name: 'Done', items: [] }
     ];
-    $scope.lists = store.get(KEY_STORAGE_LIST) || defaultLists;
+    $scope.lists = angular.fromJson(store.get(KEY_STORAGE_LIST)) || defaultLists;
   }
 
   function onListChange(event, ui) {
     setTimeout(function() {
-      store.set(KEY_STORAGE_LIST, $scope.lists);
+      store.set(KEY_STORAGE_LIST, angular.toJson($scope.lists));
     }, 0);
   }
 
@@ -54,13 +54,13 @@ function MainCtrl($scope, store) {
       return;
     }
     $scope.lists[0].items.push($scope.input.task);
-    store.set(KEY_STORAGE_LIST, $scope.lists);
+    store.set(KEY_STORAGE_LIST, angular.toJson($scope.lists));
     $scope.input.task = null;
   }
 
   function removeTask(list, index) {
     list.items.splice(index, 1);
-    store.set(KEY_STORAGE_LIST, $scope.lists);
+    store.set(KEY_STORAGE_LIST, angular.toJson($scope.lists));
   }
 
   function getTotalTasks() {
