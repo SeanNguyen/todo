@@ -1,4 +1,5 @@
 ### todo list 
+This todo list is a pure front-end web app, using AngularJS 1 as its core framework.
 
 # Getting Started:
 ### Requirements: 
